@@ -3,45 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doraemon Login</title>
+    <title>Animated Login Page</title>
     <style>
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url("C:\Users\mahin\OneDrive\Pictures\Screenshots\Screenshot 2025-02-19 173245.png') no-repeat center center/cover;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             margin: 0;
         }
 
         .login-container {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             width: 320px;
             text-align: center;
-            animation: bounce 2s infinite ease-in-out, fadeIn 1s ease-out;
-        }
-
-        .doraemon-img {
-            width: 50px;
-            margin-bottom: 10px;
-            animation: bounce 2s infinite ease-in-out;
+            animation: slideIn 1s ease-out;
         }
 
         h2 {
+            margin-bottom: 20px;
             color: #333;
         }
 
@@ -53,23 +43,41 @@
         .input-container input {
             width: 100%;
             padding: 10px;
-            border: 2px solid #00AEEF;
+            border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
+            transition: all 0.3s ease;
+            background: transparent;
             outline: none;
+        }
+
+        .input-container label {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
             transition: all 0.3s ease;
         }
 
-        .input-container input:focus {
-            border-color: #ffcc00;
-            box-shadow: 0 0 8px rgba(255, 204, 0, 0.8);
-            transform: scale(1.05);
+        .input-container input:focus, 
+        .input-container input:valid {
+            border-color: #6a11cb;
+            box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+        }
+
+        .input-container input:focus + label, 
+        .input-container input:valid + label {
+            top: 0px;
+            left: 10px;
+            font-size: 12px;
+            color: #6a11cb;
         }
 
         button {
             width: 100%;
             padding: 12px;
-            background: #00AEEF;
+            background: #28a745;
             border: none;
             color: white;
             font-size: 16px;
@@ -79,7 +87,7 @@
         }
 
         button:hover {
-            background: #ffcc00;
+            background: #218838;
             transform: scale(1.05);
         }
 
@@ -92,14 +100,15 @@
 </head>
 <body>
     <div class="login-container">
-        <img src="C:\Users\mahin\OneDrive\Pictures\Screenshots\Screenshot 2025-02-19 173245.png">
-        <h2>DoraBuji Login</h2>
+        <h2>Login</h2>
         <form id="loginForm">
             <div class="input-container">
-                <input type="text" id="username" required placeholder="Username">
+                <input type="text" id="username" required>
+                <label for="username">Username</label>
             </div>
             <div class="input-container">
-                <input type="password" id="password" required placeholder="Password">
+                <input type="password" id="password" required>
+                <label for="password">Password</label>
             </div>
             <button type="submit">Login</button>
             <p id="error-message">Invalid Username or Password</p>
@@ -113,7 +122,7 @@
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
 
-            if (username === "dorabuji" && password === "dora123") {
+            if (username === "admin" && password === "password123") {
                 alert("Login successful!");
                 window.location.href = "dashboard.html"; // Redirect to another page
             } else {
